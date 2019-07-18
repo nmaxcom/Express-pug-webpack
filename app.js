@@ -25,8 +25,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const Routes = require('./routes/index');
 const app = express();
 
 const chalk = require('chalk');
@@ -51,23 +50,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(sassMiddleware({
-                         src:            path.join(__dirname, 'public'),
-                         dest:           path.join(__dirname, 'public'),
-                         indentedSyntax: true, // true = .sass and false = .scss
-                         sourceMap:      true,
-                       }));
+  src: path.join(__dirname, 'public'),
+  dest: path.join(__dirname, 'public'),
+  indentedSyntax: true, // true = .sass and false = .scss
+  sourceMap: true,
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 /**
  * Routing
  */
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', Routes);
 
 /**
  * Error Handling
  */
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   next(createError(404));
 });
 
@@ -77,7 +75,8 @@ if (!isProduction) {
 } else {
   app.use((err, req, res, next) => {
     console.error(err);
-    res.status(500).send('Server Error');
+    res.status(500)
+      .send('Server Error');
   });
 }
 

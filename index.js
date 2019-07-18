@@ -1,1 +1,1 @@
-'use strict';const server = require('./server')();// const config = require('./config');const db = require('./config');const lala = require('./config');lala.developmentserver.create(config, db);server.start();
+'use strict';const server = require('./server')();// const config = require('./config');const db = require('./config');const lala = require('./config');server.create(config, db);server.start();

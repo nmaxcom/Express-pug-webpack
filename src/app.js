@@ -25,7 +25,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
-const Routes = require('./routes/index');
+const Routes = require('./routes');
 const app = express();
 
 const chalk = require('chalk');
@@ -39,7 +39,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 /**
  * View engine
  */
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views/pages'));
 app.set('view engine', 'pug');
 
 /**

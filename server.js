@@ -5,7 +5,7 @@ process.env.DEBUG = 'webvac:server';
 /**
  * Module dependencies.
  */
-const app = require('./app');
+const app = require('./src/app');
 const debug = require('debug')('webvac:server');
 const http = require('http');
 
@@ -42,9 +42,11 @@ const server = http.createServer(app);
 /**
  * Event listener for HTTP server "listening" event.
  */
+let bind = '';
+
 function onListening () {
   const addr = server.address();
-  const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
+  bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
   debug(`Listening on ${bind}`);
 }
 

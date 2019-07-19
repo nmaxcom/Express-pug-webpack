@@ -39,7 +39,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 /**
  * View engine
  */
-app.set('views', path.join(__dirname, 'views/pages'));
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 /**

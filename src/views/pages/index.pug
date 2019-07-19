@@ -1,12 +1,12 @@
 extends ../layout
 
 block head
-include ../partials/head
-+makeHead('Home', 'Workout plans calculated from your performance.')
+  include ../partials/head
+  +makeHead('Home', 'Workout plans calculated from your performance.')
 
 block content
-    h1= htmlWebpackPlugin.options.title
-    p Welcome to #{htmlWebpackPlugin.options.title}
+  h1= htmlWebpackPlugin.options.title
+  p Welcome to #{htmlWebpackPlugin.options.title}
 
-    script.
-      console.log(!{JSON.stringify(htmlWebpackPlugin.options)})
+  script.
+    console.log(!{JSON.stringify(htmlWebpackPlugin.options)})

@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+// #!/usr/bin/env node
 process.env.DEBUG = 'webvac:server';
 /* eslint-disable no-console */
 
@@ -8,6 +8,22 @@ process.env.DEBUG = 'webvac:server';
 const app = require('./src/app');
 const debug = require('debug')('webvac:server');
 const http = require('http');
+
+/**
+ * Webpack slick smoothie smooth
+ */
+const webpack = require('webpack');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const config = require('./webpack.config.js');
+const compiler = webpack(config);
+
+// Tell express to use the webpack-dev-middleware and use the webpack.config.js
+// configuration file as a base.
+app.use(webpackDevMiddleware(compiler, {
+  publicPath: config.output.publicPath,
+}));
+// Add webpack-hot-middleware attached to the same compiler instance
+app.use(require('webpack-hot-middleware')(compiler));
 
 /**
  * Normalize a port into a number, string, or false.

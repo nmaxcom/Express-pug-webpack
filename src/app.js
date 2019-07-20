@@ -9,6 +9,7 @@
  *
  *    (discarded) Use dotenv! Configure dev and prod
  *  TODO:
+ *    webpack-dev-middleware serverSideRender?
  *    Add good error handling
  *    Compartimentalize server
  *    Use **router.use**('/v1', v1ApiController) to set up routing
@@ -77,6 +78,7 @@ if (!isProduction) {
     console.error(err);
     res.status(500)
       .send('Server Error');
+    next();
   });
 }
 
